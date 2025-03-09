@@ -8,15 +8,12 @@
   <meta name="author" content="author name">
   <link rel="icon" href="{% static 'qu-icon.jpeg' %}">
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="{% static 'styles.css' %}"> <!-- include css file -->
- 
+  <link rel="stylesheet" href="{% static 'main.css' %}"> 
+  <style>
   {% block stylesheets %}{% endblock stylesheets %}
+  </style>
 </head>
 <body>
-    {% include "includes/header.html" %}
     {% block content %} {% endblock content %}
- 
-    {% include "includes/footer.html" %}
-
 </body>
 </html>
