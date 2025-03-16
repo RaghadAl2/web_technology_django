@@ -1,0 +1,22 @@
+{%extends "layouts/base.html"%}
+{%block title%} book {%endblock%}
+{% load static %}
+{%block content%}
+
+{%for i in books%}
+<table border="1">
+<tr>
+<th > title  </th>
+<th > author  </th>
+
+</tr>
+<tr>
+    <td > {{i.author}}</td>
+    <td > {{i.title}}</td>
+
+    </tr>
+
+</table>
+{%endfor%}
+
+{%endblock content%}
