@@ -6,6 +6,8 @@ urlpatterns = [
     path('list_books/1', views.viewbook, name="books.view_one_book"),
     path('aboutus/', views.aboutus, name="books.aboutus"),
     path('search/', views.search, name="books.search"),
+    path('simple/query', views.simple_query, name="books.simple_query"),
+    path('complex/query', views.complex_query, name="books.complex_query"),
 
      
 ]

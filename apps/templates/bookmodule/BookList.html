@@ -3,20 +3,9 @@
 {% load static %}
 {%block content%}
 
-{%for i in books%}
-<table border="1">
-<tr>
-<th > title  </th>
-<th > author  </th>
-
-</tr>
-<tr>
-    <td > {{i.author}}</td>
-    <td > {{i.title}}</td>
-
-    </tr>
-
-</table>
-{%endfor%}
+{% for obj in books %}
+    ID: {{obj.id}}, Title: {{obj.title}}
+    <hr>
+{% endfor %}
 
 {%endblock content%}
