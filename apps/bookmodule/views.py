@@ -26,14 +26,14 @@ def lab8_task1(request):
     if len(mybooks)>=1:
         return render(request, 'bookmodule/bookList.html', {'books':mybooks})
     else:
-        return render(request, 'bookmodule/index.html')  
+        return render(request, 'bookmodule/index.html',{'message':'All the Prices are higher than 80'})  
        
 def lab8_task2(request):
     mybooks=Book.objects.filter(Q(edition__gte=3)&(Q(title__icontains="co")|Q(author__icontains="co")))
     if len(mybooks)>=1:
         return render(request, 'bookmodule/bookList.html', {'books':mybooks})
     else:
-        return render(request, 'bookmodule/index.html')  
+        return render(request, 'bookmodule/index.html',{'message':'There is no elements to display'})  
     
          
 def lab8_task3(request):
@@ -41,7 +41,7 @@ def lab8_task3(request):
     if len(mybooks)>=1:
         return render(request, 'bookmodule/bookList.html', {'books':mybooks})
     else:
-        return render(request, 'bookmodule/index.html')  
+        return render(request, 'bookmodule/index.html',{'message':'There is no elements to display'})  
      
          
 def lab8_task4(request):
@@ -49,7 +49,7 @@ def lab8_task4(request):
     if len(mybooks)>=1:
         return render(request, 'bookmodule/bookList.html', {'books':mybooks})
     else:
-        return render(request, 'bookmodule/index.html')  
+        return render(request, 'bookmodule/index.html',{'message':'There is no elements to display'})  
       
           
 def lab8_task5(request):
