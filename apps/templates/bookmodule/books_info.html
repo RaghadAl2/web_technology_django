@@ -1,0 +1,33 @@
+{%extends "layouts/base.html"%}
+{%block title%} book {%endblock%}
+{% load static %}
+{%block content%}
+<br>
+<br>
+<table style=" border: 1px solid black ;  border-collapse: collapse;  place-self: center;">
+
+<tr style=" border: 1px solid black ;background-color:#92c89d; ">
+    <td style=" border: 1px solid black ">count </td>
+    <td style=" border: 1px solid black ">{{query.count}}</td>
+</tr>
+<tr style=" border: 1px solid black ;background-color:#d9919d; ">
+    <td style=" border: 1px solid black ">total price </td>
+    <td style=" border: 1px solid black ">{{query.total}}</td>
+</tr>
+<tr style=" border: 1px solid black  ;background-color:#45eaf4;">
+    <td style=" border: 1px solid black ">average price </td>
+    <td style=" border: 1px solid black ">{{query.average}}</td>
+</tr>
+<tr style=" border: 1px solid black ;background-color:#d06ff4; ">
+    <td style=" border: 1px solid black ">max price</td>
+    <td style=" border: 1px solid black ">{{query.max}}</td>
+</tr>
+<tr style=" border: 1px solid black ;background-color:SlateBlue; ">
+    <td style=" border: 1px solid black ">min price</td>
+    <td style=" border: 1px solid black ">{{query.min}}</td>
+</tr>
+
+</table>
+
+
+{%endblock content%}
