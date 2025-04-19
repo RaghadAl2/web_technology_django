@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'apps.usermodule',
     'apps.bookmodule',
     'apps.html5',
+    'apps.studentmodule',
 ]
 
 MIDDLEWARE = [

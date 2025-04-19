@@ -69,7 +69,14 @@ def lab8_task7(request):
     query = Student.objects.values('address__city').annotate(total=Count('id'))
     return render(request, 'bookmodule/Student_list.html',{'query':query})
 
-      
+def lab9_part1_listbook(request):
+     Books=Book.objects.all()
+     return render(request, 'bookmodule/showBook_lab9.html',{'Books':Books})
+ 
+def lab9_part1_addbook(request):
+     Books=Book.objects.all()
+     return render(request, 'bookmodule/showBook_lab9.html',{'Books':Books})
+    
       
 def list_books(request):
     return render(request, 'bookmodule/list_books.html')
