@@ -1,0 +1,17 @@
+{%extends "layouts/base.html"%}
+{%block title%} add book {%endblock%}
+{% load static %}
+{%block content%}
+
+<h3>adding a Book</h3>
+
+
+<form method = "post">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit">Adding Book</button>
+</form>
+
+
+
+{%endblock content%}

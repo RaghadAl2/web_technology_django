@@ -8,16 +8,13 @@
     <th style=" border: 1px solid black ; " >ID</th>
        <th style=" border: 1px solid black ; " >department name</th>
        <th style=" border: 1px solid black ; " >name</th>
-
     </tr>
 {% for obj in departments %}
    <tr style=" text-align: center; border: 1px solid black ">
        <td style="padding:10px; border: 1px solid black ">{{obj.id}}</td>
         <td style="padding:10px; border: 1px solid black ">{{obj.name}}</td>
         <td style="padding:10px; border: 1px solid black ">{{obj.student_count}}</td>
-
   </tr>
 {% endfor %}
 </table>
-
 {%endblock content%}

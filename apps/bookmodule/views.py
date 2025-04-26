@@ -1,14 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Book
 from .models import Address
 from .models import Student
 from django.db.models import Q, Count, Min, Max, Sum, Avg
+from .forms import BookForm
+
 def index(request):
-    mybook = Book(title = 'Continuous Delivery', author = 'J.Humble and D. Farley', edition = 1)
-    mybook.save()
-    return render(request, "bookmodule/index.html")
+    Books=Book.objects.all()
+    return render(request, "bookmodule/listbooks.html",{'Books':Books})
  
 def simple_query(request):
     mybooks=Book.objects.filter(title__icontains='and') 
@@ -69,28 +70,112 @@ def lab8_task7(request):
     query = Student.objects.values('address__city').annotate(total=Count('id'))
     return render(request, 'bookmodule/Student_list.html',{'query':query})
 
-def lab9_part1_listbook(request):
-     Books=Book.objects.all()
-     return render(request, 'bookmodule/showBook_lab9.html',{'Books':Books})
+
+def lab10_part1_listbook(request):
+    Books=Book.objects.all()
+    return render(request, "bookmodule/listbooks.html",{'Books':Books})
  
-def lab9_part1_addbook(request):
-     Books=Book.objects.all()
-     return render(request, 'bookmodule/showBook_lab9.html',{'Books':Books})
+
+
+def lab10_part1_addbook(request):
+     if request.method=='POST':
+                title=request.POST.get('title')
+                price=request.POST.get('price')
+                edition=request.POST.get('edition')
+                author=request.POST.get('author')                
+                obj = Book(title=title, price = float(price), edition = edition, author = author) 
+                obj.save() 
+                return redirect('books.show_one_book', id = obj.id)
+            
+     return render(request, "bookmodule/add_new_book.html")
+
+
+def lab10_part1_editbook(request,id):
+        obj = Book.objects.get(id = id)
+        if request.method == 'POST':
+                title=request.POST.get('title')
+                price=request.POST.get('price')
+                edition=request.POST.get('edition')
+                author=request.POST.get('author')                
+                obj.title = title
+                obj.price = float(price)
+                obj.edition = int(edition)
+                obj.author = author
+                obj.save()
+                return redirect('books.show_one_book', id = obj.id)
+        return render(request, "bookmodule/update_book.html", {'obj':obj})    
+
+def lab10_part1_deletebook(request,id):
+    obj = Book.objects.get(id=id)
+    obj.delete()
+    return redirect('books.lab10_part1_listbook') 
+ 
+ 
+ 
+ 
+def lab10_part2_listbook(request):
+    Books=Book.objects.all()
+    return render(request, "bookmodule/listbooks2.html",{'Books':Books})
+ 
+
+def lab10_part2_addbook(request):
+    obj = None
+    if request.method=='POST':
+        form = BookForm(request.POST)
+        if form.is_valid():
+            obj = form.save()
+            return redirect('books.show_one_book', id = obj.id)
+    else: 
+        form = BookForm(None)
+    return render(request, "bookmodule/add_book2.html",{'form':form})
+
+
+def lab10_part2_editbook(request,id):
+    obj = Book.objects.get(id=id) 
+    if request.method == 'POST':
+        form = BookForm(request.POST, instance=obj)
+        if form.is_valid():
+            form.save()
+            return redirect('books.show_one_book', id=obj.id)  
+    else:
+            form = BookForm(instance=obj)
+    return render(request, "bookmodule/update_book2.html",{'form':form})
+
+
+def lab10_part2_deletebook(request,id):
+    obj = Book.objects.get(id = id)
+    if request.method=='POST':
+         book = Book.objects.get(id=id)
+         book.delete()
+         return redirect('books.lab10_part2_listbook') 
+    return render(request, "bookmodule/delete_book2.html", {'obj':obj})
     
-      
+ 
+
+ 
+def show_one_book(request,id):
+    obj = Book.objects.get(id = id)
+    return render(request, "bookmodule/show_one_book.html", {'obj':obj})    
+
+
+
 def list_books(request):
     return render(request, 'bookmodule/list_books.html')
  
 def viewbook(request):
     return render(request, 'bookmodule/one_book.html')
- 
+
 def aboutus(request):
     return render(request, 'bookmodule/aboutus.html')
+
+
 def __getBooksList():
     book1 = {'id':12344321, 'title':'Continuous Delivery', 'author':'J.Humble and D. Farley'}
     book2 = {'id':56788765,'title':'Reversing: Secrets of Reverse Engineering', 'author':'E. Eilam'}
     book3 = {'id':43211234, 'title':'The Hundred-Page Machine Learning Book', 'author':'Andriy Burkov'}
     return [book1,book2,book3]
+
+
 def search(request):
     if request.method == "POST":
         string = request.POST.get('keyword').lower()

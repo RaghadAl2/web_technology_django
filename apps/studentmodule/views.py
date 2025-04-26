@@ -4,8 +4,6 @@ from django.shortcuts import render
 from .models import Student, Card, Department, Course
 from django.db.models import Q, Count, Min, Max, Sum, Avg , OuterRef, Subquery
 
-
-
 def lab9_task1(request):
     query =  Department.objects.annotate(student_count=Count('student'))
 
