@@ -1,0 +1,14 @@
+
+{%extends "../../layouts/base.html"%}
+{%block title%} Student {%endblock%}
+{% load static %}
+{%block content%}
+
+<h3>Updating a Student</h3>
+<form method = "post">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit">Update Student</button>
+</form>
+
+{%endblock content%}

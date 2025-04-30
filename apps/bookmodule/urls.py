@@ -19,10 +19,20 @@ urlpatterns = [
     path('lab10_part1/editbook/<id>', views.lab10_part1_editbook, name="books.lab10_part1_editbook"),
     path('lab10_part1/deletebook/<id>', views.lab10_part1_deletebook, name="books.lab10_part1_deletebook"),
     path('show_one_book/<id>', views.show_one_book, name="books.show_one_book"),
-     path('lab10_part2/listbook/', views.lab10_part2_listbook, name="books.lab10_part2_listbook"),
+    path('lab10_part2/listbook/', views.lab10_part2_listbook, name="books.lab10_part2_listbook"),
     path('lab10_part2/addbook/', views.lab10_part2_addbook, name="books.lab10_part2_addbook"),
     path('lab10_part2/editbook/<id>', views.lab10_part2_editbook, name="books.lab10_part2_editbook"),
-     path('lab10_part2/deletebook/<id>', views.lab10_part2_deletebook, name="books.lab10_part2_deletebook"),
+    path('lab10_part2/deletebook/<id>', views.lab10_part2_deletebook, name="books.lab10_part2_deletebook"),
+    path('lab11_task1/liststudent/', views.lab11_task1_liststudent, name="books.lab11_task1_liststudent"),
+    path('lab11_task1/addstudent/', views.lab11_task1_addstudent, name="books.lab11_task1_addstudent"),
+    path('lab11_task1/editstudent/<id>', views.lab11_task1_editstudent, name="books.lab11_task1_editstudent"),
+    path('lab11_task1/deletestudent/<id>', views.lab11_task1_deletestudent, name="books.lab11_task1_deletestudent"),
+    path('lab11_task2/liststudent/', views.lab11_task2_liststudent, name="books.lab11_task2_liststudent"),
+    path('lab11_task2/addstudent/', views.lab11_task2_addstudent, name="books.lab11_task2_addstudent"),
+    path('lab11_task2/editstudent/<id>', views.lab11_task2_editstudent, name="books.lab11_task2_editstudent"),
+    path('lab11_task2/deletestudent/<id>', views.lab11_task2_deletestudent, name="books.lab11_task2_deletestudent"),
+    path('lab11_task3/listimages/', views.lab11_task3_listimages, name="books.lab11_task3_listimages"),
+    path('lab11_task3/addimage/', views.lab11_task3_addimage, name="books.lab11_task3_addimage"),
 
   
 ]

@@ -2,10 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Book
-from .models import Address
-from .models import Student
+from .models import Address,Address2
+from .models import Student,Student2,Image
 from django.db.models import Q, Count, Min, Max, Sum, Avg
-from .forms import BookForm
+from .forms import BookForm,StudentForm,Student2Form,ImageForm
 
 def index(request):
     Books=Book.objects.all()
@@ -149,16 +149,114 @@ def lab10_part2_deletebook(request,id):
          book.delete()
          return redirect('books.lab10_part2_listbook') 
     return render(request, "bookmodule/delete_book2.html", {'obj':obj})
-    
- 
-
- 
+  
 def show_one_book(request,id):
     obj = Book.objects.get(id = id)
     return render(request, "bookmodule/show_one_book.html", {'obj':obj})    
 
+####################################################################################################################################################################################
+
+def lab11_task1_liststudent(request):
+    Students=Student.objects.all()
+    return render(request, "bookmodule/lab11_task1/liststudent.html",{'Students':Students})
 
 
+
+def lab11_task1_addstudent(request):
+    obj = None
+    if request.method=='POST':
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            obj = form.save()
+            return redirect('books.lab11_task1_liststudent')
+    else: 
+        form = StudentForm(None)
+    return render(request, "bookmodule/lab11_task1/add_student.html",{'form':form})
+
+
+def lab11_task1_editstudent(request,id):
+    obj = Student.objects.get(id=id) 
+    if request.method == 'POST':
+        form = StudentForm(request.POST, instance=obj)
+        if form.is_valid():
+            form.save()
+            return redirect('books.lab11_task1_liststudent')
+    else:
+            form = StudentForm(instance=obj)
+    return render(request, "bookmodule/lab11_task1/edit_student.html",{'form':form})
+
+
+def lab11_task1_deletestudent(request,id):
+    obj = Student.objects.get(id = id)
+    if request.method=='POST':
+         student = Student.objects.get(id=id)
+         student.delete()
+         return redirect('books.lab11_task1_liststudent') 
+    return render(request, "bookmodule/lab11_task1/delete_student.html", {'obj':obj})
+
+
+
+
+
+
+
+
+def lab11_task2_liststudent(request):
+    Students=Student2.objects.all()
+    return render(request, "bookmodule/lab11_task2/liststudent.html",{'Students':Students})
+
+
+def lab11_task2_addstudent(request):
+    obj = None
+    if request.method=='POST':
+        form = Student2Form(request.POST)
+        if form.is_valid():
+            obj = form.save()
+            return redirect('books.lab11_task2_liststudent')
+    else: 
+        form = Student2Form(None)
+    return render(request, "bookmodule/lab11_task2/add_student.html",{'form':form})
+
+
+def lab11_task2_editstudent(request,id):
+    obj = Student2.objects.get(id=id) 
+    if request.method == 'POST':
+        form = Student2Form(request.POST, instance=obj)
+        if form.is_valid():
+            form.save()
+            return redirect('books.lab11_task2_liststudent')
+    else:
+            form = Student2Form(instance=obj)
+    return render(request, "bookmodule/lab11_task2/edit_student.html",{'form':form})
+
+
+def lab11_task2_deletestudent(request,id):
+    obj = Student2.objects.get(id = id)
+    if request.method=='POST':
+         student = Student2.objects.get(id=id)
+         student.delete()
+         return redirect('books.lab11_task2_liststudent') 
+    return render(request, "bookmodule/lab11_task2/delete_student.html", {'obj':obj})
+
+
+def lab11_task3_listimages(request):
+    Images=Image.objects.all()
+    return render(request,"bookmodule/lab11task3/list.html",{"Images":Images})
+
+def lab11_task3_addimage(request):
+    if request.method == 'POST':
+       form = ImageForm(request.POST, request.FILES)
+       if form.is_valid():
+            form.save()
+            return redirect('books.lab11_task3_listimages') 
+
+    else:
+        form = ImageForm()
+    return render(request, 'bookmodule/lab11task3/addimage.html', {'form': form})
+
+
+
+##########################################################################################
 def list_books(request):
     return render(request, 'bookmodule/list_books.html')
  

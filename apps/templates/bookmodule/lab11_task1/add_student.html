@@ -1,0 +1,17 @@
+{%extends "../../layouts/base.html"%}
+{%block title%} add student {%endblock%}
+{% load static %}
+{%block content%}
+
+<h3>adding a Student</h3>
+
+
+<form method = "post">
+    {% csrf_token %}
+    {{form.as_table}}
+    <button type="submit">Adding Student</button>
+</form>
+
+
+
+{%endblock content%}
