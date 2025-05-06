@@ -5,4 +5,13 @@
     <a href="{% url "books.index" %}">Home</a> 
     <a href="{% url "books.list_books" %}">List Books</a> 
     <a href="{% url "books.aboutus" %}">About</a> 
+    <div style="float: right;">
+        {% if user.is_authenticated %}
+            <span>Hi  {{ user.username }}</span>
+        <a style= "border:1px  ;" href="{% url 'logout' %}">Logout</a>
+        {% else %}
+        <a style= "border:1px  ;" href="{% url 'login' %}">Login</a>
+        <a style= "border:1px  ;" href="{% url 'register' %}">Register</a>
+        {% endif %}
+    </div>
 </div>

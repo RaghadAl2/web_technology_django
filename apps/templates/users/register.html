@@ -1,0 +1,13 @@
+{%extends "layouts/base.html"%}
+{%block title%}  {%endblock%}
+{% load static %}
+{%block content%}
+<h2>Register</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Register</button>
+    <p>already have an account <a href="{% url "login" %}">login</a></p>
+</form>
+
+{%endblock content%}

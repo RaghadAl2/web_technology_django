@@ -33,7 +33,6 @@ urlpatterns = [
     path('lab11_task2/deletestudent/<id>', views.lab11_task2_deletestudent, name="books.lab11_task2_deletestudent"),
     path('lab11_task3/listimages/', views.lab11_task3_listimages, name="books.lab11_task3_listimages"),
     path('lab11_task3/addimage/', views.lab11_task3_addimage, name="books.lab11_task3_addimage"),
-
-  
+   
 ]
  

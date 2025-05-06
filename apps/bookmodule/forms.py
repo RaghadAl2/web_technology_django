@@ -109,3 +109,5 @@ class ImageForm(forms.ModelForm):
     class Meta:
         model = models.Image
         fields = ['title', 'image']
+        
+        
